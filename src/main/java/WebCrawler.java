@@ -20,7 +20,7 @@ public class WebCrawler {
     private Set<String> seenUrls = new HashSet<>();
     private static final int MAX_URLS = 10000;//设置最大的爬取数量
     private static final String DB_URL = "jdbc:mysql://localhost/数据库名?user=用户名&password=密码";//设置你的数据库的相关信息
-    private static final String INSERT_SQL = "INSERT INTO crawled_url_rank (url, title, description, keywords, detail, content, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    private static final String INSERT_SQL = "INSERT INTO crawled_url_rank (url, title, description, keywords, detail, content, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?);";//设置你数据库中相应的字段，有多少字段就有多少个问号
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3";
     private static final int CRAWL_DELAY_MS = 500;//设置爬取延迟单位毫秒
     private static final String COOKIE = "Your Cookie String Here";// 如果需要cookie，填写你的cookie
