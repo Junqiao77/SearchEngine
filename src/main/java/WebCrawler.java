@@ -18,12 +18,12 @@ public class WebCrawler {
 
     private Queue<String> queue = new LinkedList<>();
     private Set<String> seenUrls = new HashSet<>();
-    private static final int MAX_URLS = 10000;
-    private static final String DB_URL = "jdbc:mysql://localhost/topic_search?user=root&password=mysql088925";
+    private static final int MAX_URLS = 10000;//设置最大的爬取数量
+    private static final String DB_URL = "jdbc:mysql://localhost/数据库名?user=用户名&password=密码";//设置你的数据库的相关信息
     private static final String INSERT_SQL = "INSERT INTO crawled_url_rank (url, title, description, keywords, detail, content, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?);";
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3";
-    private static final int CRAWL_DELAY_MS = 500;
-    private static final String COOKIE = "Your Cookie String Here";
+    private static final int CRAWL_DELAY_MS = 500;//设置爬取延迟单位毫秒
+    private static final String COOKIE = "Your Cookie String Here";// 如果需要cookie，填写你的cookie
 
     public WebCrawler(String seedUrl) {
         if (isValidUrl(seedUrl)) {
@@ -47,7 +47,8 @@ public class WebCrawler {
                 url.matches("https://www.gamersky.com/z/.*/handbook/") ||
                 url.matches("https://www.gamersky.com/news/.*") ||
                 url.matches("https://www.gamersky.com/handbook/.*");
-    }
+    }  // 根据我自己的需求，做了选择特定的爬取对应的URL网址，可以自己修改
+
 
     private Connection connect() {
         Connection conn = null;
@@ -66,7 +67,7 @@ public class WebCrawler {
             pstmt.setString(2, title);
             pstmt.setString(3, description);
             pstmt.setString(4, keywords);
-            pstmt.setString(5, detail); // 新增 detail 参数
+            pstmt.setString(5, detail); 
             pstmt.setString(6, content);
             pstmt.setLong(7, timestamp);
             pstmt.executeUpdate();
@@ -74,7 +75,7 @@ public class WebCrawler {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
+    } // 写入数据库的操作
 
     public void startCrawl() {
         int countUrls = 0;
@@ -116,7 +117,7 @@ public class WebCrawler {
                 System.err.println("处理URL时出错: " + currentUrl + "; 错误信息: " + e.getMessage());
             }
         }
-    }
+    } // 爬取对应的网站的对应的字段，可能网站会改变，也可以爬取你需要的字段
 
     public static void main(String[] args) {
         WebCrawler crawler = new WebCrawler("https://www.gamersky.com/");
