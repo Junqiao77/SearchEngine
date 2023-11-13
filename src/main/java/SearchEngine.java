@@ -16,7 +16,7 @@ public class SearchEngine {
 
     public static void main(String[] args) {
         try {
-            String indexDir = "/Users/fujunqiao/Documents/code/java/SearchEngine/Index"; // 确保这是你索引存储的路径
+            String indexDir = "/java/SearchEngine/Index"; // 确保这是你索引存储的路径
             String queryStr = "天际线2，道路"; // 查询字符串
 
             // 打开索引
@@ -30,7 +30,7 @@ public class SearchEngine {
             Query query = parser.parse(queryStr);
 
             // 执行查询
-            TopDocs hits = searcher.search(query, 100); // 获取前10个结果
+            TopDocs hits = searcher.search(query, 10); // 获取前10个结果（可以自定前几个结果）
 
             // 输出结果
             for (ScoreDoc sd : hits.scoreDocs) {
