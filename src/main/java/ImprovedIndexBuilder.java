@@ -25,7 +25,6 @@ public class ImprovedIndexBuilder implements AutoCloseable {
 
     public void indexDocument(String id, String url, String title, String description, String keywords, String detail, String content, long timestamp) throws IOException {
         Document doc = new Document();
-        // 增加字段权重设置
         Field titleField = new StringField("title", title, Field.Store.YES);
 
         doc.add(new StringField("id", id, Field.Store.YES));
@@ -48,11 +47,11 @@ public class ImprovedIndexBuilder implements AutoCloseable {
     }
 
     public static void main(String[] args) {
-        String indexDir = "/Users/fujunqiao/Documents/code/java/SearchEngine/Index";
-        String jdbcUrl = "jdbc:mysql://localhost:3306/topic_search";
-        String user = "root";
-        String password = "mysql088925";
-        String sqlQuery = "SELECT * FROM crawled_url_rank";
+        String indexDir = "/java/SearchEngine/Index";// 你的索引文件的地址
+        String jdbcUrl = "jdbc:mysql://localhost:3306/your_data";// 你的数据库的URL
+        String user = "root";// 数据库的用户名
+        String password = "";// 数据库的密码
+        String sqlQuery = "";// 数据库中存储的表的名称
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
